@@ -1,4 +1,4 @@
-package com.studio.quatro.cucktaleApp
+package com.studio.quatro.cucktaleApp.utils
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

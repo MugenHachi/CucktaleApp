@@ -1,13 +1,25 @@
-package com.studio.quatro.cucktaleApp
+package com.studio.quatro.cucktaleApp.entities
 
 data class Drink (
-        val id: Int,
-        val name: String,
-        val category: String,
-        val alcoholic: String,
-        val glass: String,
-        val thumb: String,
-        val instructions: String,
+        val idDrink: Int,
+        val strDrink: String,
+        val strDrinkES: String,
+        val strDrinkDE: String,
+        val strDrinkFR: String,
+        val strDrinkZH1: String,
+        val strDrinkZH2: String,
+        val strVideo: String,
+        val strCategory: String,
+        val strIBA: String,
+        val strAlcoholic: String,
+        val strGlass: String,
+        val strInstructions: String,
+        val strInstructionsES: String,
+        val strInstructionsDE: String,
+        val strInstructionsFR: String,
+        val strInstructionsZH1: String,
+        val strInstructionsZH2: String,
+        val strDrinkThumb: String,
         val ingredient1: String,
         val ingredient2: String,
         val ingredient3: String,
@@ -37,5 +49,6 @@ data class Drink (
         val measure12: String,
         val measure13: String,
         val measure14: String,
-        val measure15: String
+        val measure15: String,
+        var dateModified: String
 )
