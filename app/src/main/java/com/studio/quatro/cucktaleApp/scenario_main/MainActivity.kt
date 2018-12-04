@@ -1,16 +1,13 @@
 package com.studio.quatro.cucktaleApp.scenario_main
 
-import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.studio.quatro.cucktaleApp.entities.Drink
 import com.studio.quatro.cucktaleApp.R
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : AppCompatActivity(), MainContract.View, DrinkListFragment.OnFragmentInteractionListener {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +23,35 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun showList(drinks: List<Drink>) {
 
-        val adapter = DrinkAdapter(this, drinks)
-        adapter.setOnItemClickListener { position ->
-            Toast.makeText(this, "item $position", Toast.LENGTH_SHORT)
+        val drinkListFragment = DrinkListFragment.newInstance(drinks as ArrayList<Drink>)
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fmMaster, drinkListFragment)
+                .commit()
+
+
+
+    }
+
+    override fun showDetail(drinks: List<Drink>) {
+        val drinkDetailFragment = DrinkDetailFragment.newInstance(drinks.first())
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fmMaster, drinkDetailFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
+
+
+    override fun onFragmentInteraction(query: String?, index: Int?) {
+        val presenter : MainContract.Presenter = MainPresenter(this)
+        if(query == DrinkListFragment.GET_DETAIL) {
+            presenter.onLoadDrink(index.toString())
+        } else if (query == DrinkListFragment.GET_RANDOM) {
+            presenter.onRandomDrink()
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
 
     }
 

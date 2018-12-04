@@ -26,7 +26,50 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
                 }
             }
         })
+    }
 
+
+    override fun onLoadDrink(index: String) {
+        val drinkService = RetrofitInicializer().createDrinkService()
+
+        val call = drinkService.lookupDrink(index)
+
+        call.enqueue(object : Callback<DrinkList> {
+            override fun onFailure(call: Call<DrinkList>, t: Throwable) {
+                view.showMessage("Connection failed.")
+            }
+
+            override fun onResponse(call: Call<DrinkList>, response: Response<DrinkList>) {
+                if(response.body() != null) {
+                    view.showDetail(response.body()!!.drinks)
+                } else {
+                    view.showMessage("No drinks found")
+                }
+            }
+        })
+    }
+
+    override fun onRandomDrink() {
+        val drinkService = RetrofitInicializer().createDrinkService()
+
+        val call = drinkService.getRandomDrink()
+
+        call.enqueue(object : Callback<DrinkList> {
+            override fun onFailure(call: Call<DrinkList>, t: Throwable) {
+                view.showMessage("Connection failed.")
+            }
+
+            override fun onResponse(call: Call<DrinkList>, response: Response<DrinkList>) {
+                if(response.body() != null) {
+                    view.showDetail(response.body()!!.drinks)
+                } else {
+                    view.showMessage("No drinks found")
+                }
+            }
+        })
 
     }
+
+
+
 }

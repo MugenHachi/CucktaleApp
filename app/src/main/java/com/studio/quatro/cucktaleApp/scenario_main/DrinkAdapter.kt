@@ -43,7 +43,7 @@ class DrinkAdapter(val context: Context, val drinks: List<Drink>) : RecyclerView
 
             GlideApp.with(context)
                     .load(drink.strDrinkThumb)
-                    .transform(RoundedCornersTransformation(30, 10))
+                    .centerCrop()
                     .into(itemView.drinkImg)
 
             if(itemClickListener != null) {

@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#303030"
     android:orientation="vertical"
     tools:context=".scenario_main.MainActivity">
 
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+  <FrameLayout
+        android:id="@+id/fmMaster"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_drink" />
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </FrameLayout>

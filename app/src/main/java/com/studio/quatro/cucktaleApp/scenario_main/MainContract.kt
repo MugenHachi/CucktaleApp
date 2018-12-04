@@ -7,12 +7,15 @@ interface MainContract {
     interface View {
         fun showMessage(msg: String)
         fun showList(drinks: List<Drink>)
+        fun showDetail(drinks: List<Drink>)
 
     }
 
     interface Presenter {
 
         fun onLoadList()
+        fun onLoadDrink(index: String)
+        fun onRandomDrink()
 
     }
 }
