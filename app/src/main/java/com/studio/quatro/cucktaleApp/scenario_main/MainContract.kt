@@ -8,6 +8,8 @@ interface MainContract {
         fun showMessage(msg: String)
         fun showList(drinks: List<Drink>)
         fun showDetail(drinks: List<Drink>)
+        fun showLoading()
+        fun hideLoading()
 
     }
 

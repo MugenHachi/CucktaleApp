@@ -5,9 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ProgressBar
 
 import com.studio.quatro.cucktaleApp.R
 import com.studio.quatro.cucktaleApp.entities.Drink
@@ -82,17 +81,13 @@ class DrinkListFragment : Fragment() {
         listener = null
     }
 
-    fun getDrinkList(): ArrayList<Drink>{
-        val drinks = arguments?.getSerializable(ARG_LIST) as ArrayList<Drink>?
-        if(drinks == null){
-            throw NullPointerException("Articles list can not be null")
-        }
-
-        return drinks
+    private fun getDrinkList(): ArrayList<Drink> {
+        return arguments?.getSerializable(ARG_LIST) as ArrayList<Drink>? ?: throw NullPointerException("Articles list can not be null")
     }
 
+
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(random:String? = GET_DETAIL, index: Int? = null)
+        fun onFragmentInteraction(query: String? = GET_DETAIL, index: Int? = null)
     }
 
 
